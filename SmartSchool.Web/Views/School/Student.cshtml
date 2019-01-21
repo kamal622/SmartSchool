@@ -1,0 +1,73 @@
+﻿
+@{
+    ViewBag.Title = "Manage Student";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div ng-controller="StudentCtrl">
+    <div class="row jqx-widget-content">
+        <div class="row">
+            <fieldset>
+                <legend>Inquiry Search Criteria</legend>
+                <div class="row form-group">
+                    <div class="col-md-1  vertical-center"><label>Name</label></div>
+                    <div class="col-md-4 ">
+                        <jqx-input ng-model="Name" jqx-width="'100%'" jqx-height="InputHeight" jqx-theme="Theme"></jqx-input>
+                    </div>
+                    <div class="col-md-1  vertical-center">
+                        <label>Mobile No</label>
+                    </div>
+                    <div class="col-md-4 ">
+                        <jqx-input ng-model="MobileNo" jqx-width="'100%'" jqx-height="InputHeight" jqx-theme="Theme"></jqx-input>
+                    </div>
+                </div>
+                <div class="row form-group">
+
+
+                    <div class="col-md-1  vertical-center"><label>Registration No</label></div>
+                  
+                    <div class="col-md-4">
+                        <jqx-input ng-model="RegistrationNo" jqx-width="'100%'" jqx-height="InputHeight" jqx-theme="Theme"></jqx-input>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-md-1  vertical-center">
+                    </div>
+                    <div class="col-md-3">
+                        <jqx-button jqx-theme="Theme" jqx-width="100" jqx-height="30" jqx-on-click="onSearch(event)">Seacrh</jqx-button>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+        <div class="row">
+            <fieldset>
+                <legend>New Inquiry / Followup</legend>
+                <jqx-grid jqx-create="createWidget"
+                          jqx-columns="[
+                      { text: 'Id', datafield: 'Id', hidden: true },
+                      { text: '', datafield: 'ImageName', width: '5%' , cellsrenderer: Image},
+                      { text: 'Name', datafield: 'Name', width: '20%' },
+                      { text: 'CurrentAddress', datafield: 'CurrentAddress', width: '25%' },
+                      { text: 'Mobile', datafield: 'Mobile', width: '10%' },
+                      { text: 'Email', datafield: 'Email', width: '20%' ,cellsformat: 'dd/MM/yyyy'},
+                      { text: 'Manage', width: '10%', cellsrenderer: ManageStudent, width: '20%'  }
+                      ]"
+                          jqx-columnsresize=true
+                          jqx-sortable=true
+                          jqx-source="sourceStudent"
+                          jqx-width="'100%'"
+                          jqx-height="600"
+                          jqx-rowsheight= "60"
+                          jqx-settings="StudentGrid"
+                          jqx-theme="Theme"></jqx-grid>
+            </fieldset>
+        </div>
+
+    </div>
+</div>
+
+@section scripts {
+    <script type="text/javascript" src="~/JS/School/StudentController.js"></script>
+}
+
+

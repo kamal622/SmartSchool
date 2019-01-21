@@ -1,0 +1,156 @@
+﻿
+@{
+    ViewBag.Title = "Manage Batch";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div ng-controller="BatchCtrl">
+    <div class="row jqx-widget-content">
+
+        <div style="color: #ff6a00;">
+            <h4>@ViewBag.Title</h4>
+        </div>
+        <div>
+            <jqx-button type="button" jqx-theme="Theme" jqx-width="250" jqx-height="30" ng-click="AddNew(event)">Add Batch</jqx-button>
+
+        </div>
+        <jqx-splitter jqx-settings="mainSplitterSettings" jqx-width="'100%'"
+                      jqx-height="360" jqx-orientation="'vertical'"
+                      jqx-theme="Theme">
+
+            <div>
+                <jqx-expander jqx-show-arrow=false jqx-toggle-mode="'none'"
+                              jqx-width="'100%'" jqx-height="'100%'" jqx-theme="Theme">
+                    <div>
+                        Batch List
+                    </div>
+                    <div>
+                        <jqx-list-box id="lstBatch" ng-model="selectedValue" jqx-on-select="selectItem(event)" jqx-width="'99%'" jqx-auto-height=true
+                                      jqx-settings="listSettings" jqx-source="source" jqx-theme="Theme" jqx-display-member="'Title'" jqx-value-member="'Id'">
+
+                        </jqx-list-box>
+
+                    </div>
+
+                </jqx-expander>
+            </div>
+            <div>
+                <jqx-expander jqx-show-arrow=false jqx-toggle-mode="'none'"
+                              jqx-width="'100%'" jqx-height="'100%'" jqx-theme="Theme">
+                    <div>
+                        Batch Details {{DetailTitle}}
+                    </div>
+
+                    <div ng-show="showDetail">
+                        <div class="row form-group">
+                            <div class="col-md-1  vertical-center"><label>Title</label></div>
+                            <div class="col-md-4 ">
+                                <jqx-input ng-model="Title" jqx-width="'100%'" jqx-height="InputHeight" jqx-theme="Theme" jqx-disabled="ReadOnly" ng-class="{red: InquiryForm.FirstName.$invalid && (InquiryForm.FirstName.$touched || submitted)}" required></jqx-input>
+                            </div>
+                            <div class="col-md-1  vertical-center"><label>Capacity</label></div>
+                            <div class="col-md-4 ">
+                                <jqx-input ng-model="BatchCapacity" jqx-width="'100%'" jqx-height="InputHeight" jqx-theme="Theme" jqx-disabled="ReadOnly"></jqx-input>
+                            </div>
+                        </div>
+                        <div class="row form-group ">
+                            <div class="col-md-1  vertical-center"><label>Days</label></div>
+                            <div class="col-md-1">
+                                <jqx-check-box ng-model="IsSunday" jqx-width="250" jqx-height="25" jqx-theme="Theme" jqx-disabled="ReadOnly">
+                                    Sunday
+                                </jqx-check-box>
+                            </div>
+                            <div class="col-md-1">
+                                <jqx-check-box ng-model="IsMonday" jqx-width="250" jqx-height="25" jqx-theme="Theme" jqx-disabled="ReadOnly">
+                                    Monday
+                                </jqx-check-box>
+                            </div>
+                            <div class="col-md-1">
+                                <jqx-check-box ng-model="IsTuesday" jqx-width="250" jqx-height="25" jqx-theme="Theme" jqx-disabled="ReadOnly">
+                                    Tuesday
+                                </jqx-check-box>
+                            </div>
+                            <div class="col-md-1">
+                                <jqx-check-box ng-model="IsWednesday" jqx-width="250" jqx-height="25" jqx-theme="Theme" jqx-disabled="ReadOnly">
+                                    Wednesday
+                                </jqx-check-box>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-1  vertical-center"></div>
+
+                            <div class="col-md-1">
+                                <jqx-check-box ng-model="IsThursday" jqx-width="250" jqx-height="25" jqx-theme="Theme" jqx-disabled="ReadOnly">
+                                    Thursday
+                                </jqx-check-box>
+                            </div>
+                            <div class="col-md-1">
+                                <jqx-check-box ng-model="IsFriday" jqx-width="250" jqx-height="25" jqx-theme="Theme" jqx-disabled="ReadOnly">
+                                    Friday
+                                </jqx-check-box>
+                            </div>
+                            <div class="col-md-1">
+                                <jqx-check-box ng-model="IsSaturday" jqx-width="250" jqx-height="25" jqx-theme="Theme" jqx-disabled="ReadOnly">
+                                    Saturday
+                                </jqx-check-box>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-1  vertical-center">
+                                <label>Timing</label>
+                            </div>
+                            <div class="col-md-2">
+                                <jqx-date-time-input jqx-theme="Theme" ng-model="TimeFrom" jqx-width="90" jqx-height="25" jqx-format-string="'HH:mm'" jqx-show-time-button="true" jqx-show-calendar-button="false" jqx-disabled="ReadOnly">
+
+                                </jqx-date-time-input>
+                            </div>
+                            <div class="col-md-1 jqx-left-align vertical-center">
+                                <label>To</label>
+                            </div>
+                            <div class="col-md-2 jqx-left-align">
+                                <jqx-date-time-input jqx-theme="Theme" ng-model="TimeTo" jqx-width="90" jqx-height="25" jqx-format-string="'HH:mm'" jqx-show-time-button="true" jqx-show-calendar-button="false" jqx-disabled="ReadOnly">
+
+                                </jqx-date-time-input>
+                            </div>
+
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-1  vertical-center"><label>Description</label> </div>
+
+                            <div class="col-md-9">
+                                <jqx-text-area ng-model="Description" jqx-width="'100%'" jqx-height="50" jqx-theme="Theme" jqx-disabled="ReadOnly"></jqx-text-area>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-1  vertical-center"> </div>
+                            <div class="col-md-4 vertical-center"><label>{{lblError}}</label> </div>
+                        </div>
+
+
+                        <div class="row form-group">
+                            <div class="col-md-1  vertical-center">
+                            </div>
+                            <div class="col-md-2">
+                                <jqx-button jqx-theme="Theme" jqx-width="100" jqx-height="30" jqx-on-click="onSaveBatch(event)" jqx-disabled="ReadOnly">Save</jqx-button>
+                            </div>
+                            @*<div class="col-md-2">
+                                    <jqx-button jqx-theme="Theme" jqx-width="100" jqx-height="30" type="button" jqx-disabled="ReadOnly">Cancel</jqx-button>
+                                </div>*@
+                        </div>
+                    </div>
+                </jqx-expander>
+            </div>
+
+
+
+        </jqx-splitter>
+
+    </div>
+</div>
+
+@section scripts {
+    <script type="text/javascript" src="~/JS/School/BatchController.js"></script>
+}
+
+
+
+

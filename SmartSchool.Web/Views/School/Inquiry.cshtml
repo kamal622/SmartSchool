@@ -1,0 +1,146 @@
+﻿
+@{
+    ViewBag.Title = "Program Inquiry";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div ng-controller="InquiryCtrl">
+    <form name="InquiryForm" id="InquiryForm" novalidate>
+        <div class="row jqx-widget-content">
+            <div style="color: #ff6a00;">
+                <h4>@ViewBag.Title</h4>
+            </div>
+
+            <fieldset>
+                <legend>Student Information</legend>
+                <div class="row form-group">
+                    <div class="col-md-1 text-nowrap vertical-center"><label>First Name</label></div>
+                    <div class="col-md-3">
+                        <input type="hidden" value="@ViewBag.InquiryId" id="hdnInquiryId" />
+                        @*<input type="number" style="width:80px;" min="0" max="100" name="preSourceThreshold" ng-class="{red: preSourceThresholdForm.preSourceThreshold.$invalid && preSourceThresholdForm.preSourceThreshold.$dirty}" ng-model="admin.preSourceThreshold" required> %*@
+
+                        <jqx-input ng-model="FirstName" name="FirstName" jqx-width="'100%'" jqx-height="InputHeight" jqx-theme="Theme" ng-class="{red: InquiryForm.FirstName.$invalid && (InquiryForm.FirstName.$touched || submitted)}" required></jqx-input>
+                                           </div>
+                    <div class="col-md-1 text-nowrap vertical-center"><label>Middle Name</label></div>
+                    <div class="col-md-3">
+                        <jqx-input ng-model="MiddleName" name="MiddleName" jqx-width="'100%'" jqx-height="InputHeight" jqx-theme="Theme" ng-class="{red: InquiryForm.MiddleName.$invalid && (InquiryForm.MiddleName.$touched || submitted)}" required></jqx-input>
+
+                    </div>
+                    <div class="col-md-1 text-nowrap vertical-center"><label>Last Name</label></div>
+                    <div class="col-md-3">
+                        <jqx-input ng-model="LastName" name="LastName" jqx-width="'100%'" jqx-height="InputHeight" jqx-theme="Theme" ng-class="{red: InquiryForm.LastName.$invalid && (InquiryForm.LastName.$touched || submitted)}" required></jqx-input>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-md-1 text-nowrap vertical-center"><label>Address</label></div>
+                    <div class="col-md-7">
+                        <jqx-text-area ng-model="Address" name="Address" jqx-width="'100%'" jqx-height="50" jqx-theme="Theme" ng-class="{red: InquiryForm.Address.$invalid && (InquiryForm.Address.$touched || submitted)}" required></jqx-text-area>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-md-1 text-nowrap vertical-center"><label>Mobile</label></div>
+                    <div class="col-md-3">
+                        <jqx-input ng-model="Mobile" name="Mobile" jqx-width="'100%'" jqx-height="InputHeight" jqx-theme="Theme" ng-class="{red: InquiryForm.Mobile.$invalid && (InquiryForm.Mobile.$touched || submitted)}" required></jqx-input>
+                    </div>
+                    <div class="col-md-1 text-nowrap vertical-center"><label>Birth Date</label></div>
+                    <div class="col-md-3">
+                        @*<jqx-input ng-model="DOB" jqx-width="'100%'" jqx-height="InputHeight" jqx-place-holder="'DOB'" jqx-theme="Theme"></jqx-input>*@
+                        <jqx-date-time-input ng-model="DOB" jqx-width="'100%'" jqx-height="InputHeight" jqx-theme="Theme"></jqx-date-time-input>
+                    </div>
+                    <div class="col-md-1 text-nowrap vertical-center"><label>Email</label></div>
+                    <div class="col-md-3">
+                        <jqx-input ng-model="Email" name="Email" ng-pattern="emailFormat" ng-class="{red: InquiryForm.Email.$invalid && (InquiryForm.Email.$touched || submitted)}" jqx-width="'100%'" jqx-height="InputHeight" jqx-theme="Theme" required></jqx-input>
+                        <label class="error" ng-show="InquiryForm.Email.$error.pattern">Not valid email!</label>
+                    </div>
+                </div>
+              
+            </fieldset>
+            <br />
+            <fieldset>
+                <legend>Program Details</legend>
+                <div class="row form-group">
+                    <div class="col-md-1  vertical-center"><label>Program</label></div>
+                    <div class="col-md-1">
+                        <jqx-check-box ng-model="IsGuitar" jqx-width="250" jqx-checked="true" jqx-height="25" jqx-theme="Theme">
+                            Guitar
+                        </jqx-check-box>
+                    </div>
+                    <div class="col-md-1">
+                        <jqx-check-box ng-model="IsKeyBoard" jqx-width="250" jqx-height="25" jqx-theme="Theme">
+                            <span>KeyBoard</span>
+                        </jqx-check-box>
+                    </div>
+                    <div class="col-md-1">
+                        <jqx-check-box ng-model="IsBass" jqx-width="250" jqx-height="25" jqx-theme="Theme">
+                            <span>Bass</span>
+                        </jqx-check-box>
+                    </div>
+
+                    <div class="col-md-1">
+                        <jqx-check-box ng-model="IsDrums" jqx-width="250" jqx-height="25" jqx-theme="Theme">
+                            <span>Drums</span>
+                        </jqx-check-box>
+                    </div>
+                    <div class="col-md-1">
+                        <jqx-check-box ng-model="IsVocals" jqx-width="250" jqx-height="25" jqx-theme="Theme">
+                            <span>Vocals</span>
+                        </jqx-check-box>
+                    </div>
+                    <div class="col-md-1">
+                        <jqx-check-box ng-model="IsRecording" jqx-width="250" jqx-height="25" jqx-theme="Theme">
+                            <span>Recording & Mixing</span>
+                        </jqx-check-box>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-md-1  vertical-center"><label>Timing</label></div>
+                    <div class="col-md-1">
+                        <jqx-check-box ng-model="IsMorning" jqx-width="250" jqx-checked="true" jqx-height="25" jqx-theme="Theme">
+                            Morning
+                        </jqx-check-box>
+                    </div>
+
+                    <div class="col-md-1">
+                        <jqx-check-box ng-model="IsEvening" jqx-width="250" jqx-height="25" jqx-theme="Theme">
+                            <span>Evening</span>
+                        </jqx-check-box>
+                    </div>
+
+                </div>
+
+                <div class="row form-group">
+                    <div class="col-md-1 text-nowrap vertical-center"><label>Remarks</label></div>
+                    <div class="col-md-7">
+                        <jqx-text-area ng-model="Remarks" jqx-width="'100%'" jqx-height="50" jqx-theme="Theme"></jqx-text-area>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-md-1 text-nowrap vertical-center"></div>
+                    <div class="col-md-7">
+                        <label>{{ErroMessage}}</label>
+                    </div>
+                </div>
+            </fieldset>
+            <div class="row form-group">
+                <div class="col-md-1  vertical-center">
+                </div>
+                <div class="col-md-3">
+                    <jqx-button jqx-theme="Theme" jqx-width="100" jqx-height="30" jqx-on-click="onSaveInquiry(event)">Save</jqx-button>
+                   <jqx-link-button jqx-theme="Theme" jqx-width="100" jqx-height="30">
+                        <div>
+                            <a style='margin: 4px;text-decoration:underline;' href='/School/InquiryMaintenance'>Back</a>";
+                        </div>
+                    </jqx-link-button>
+
+
+                </div>
+            </div>
+        </div>
+
+    </form>
+</div>
+
+@section scripts {
+    <script type="text/javascript" src="~/JS/School/InquiryController.js"></script>
+}

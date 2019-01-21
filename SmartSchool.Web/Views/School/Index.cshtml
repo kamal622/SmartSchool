@@ -1,0 +1,112 @@
+﻿
+@{
+    ViewBag.Title = "Dashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div ng-controller="DashboardCtrl">
+
+    <div class="row form-group">
+        <div class="row col-md-6">
+            <jqx-chart jqx-source="Chartsource1"
+                       jqx-title="'Student Strength'"
+                       jqx-description="'Program Wise'"
+                       jqx-series-groups="[
+                        {
+                            type: 'pie',
+                            showLabels: true,
+                            series:
+                                [
+                                    {
+                                        dataField: 'TotalInquiries',
+                                        displayText: 'Course',
+                                        labelRadius: 100,
+                                        initialAngle: 15,
+                                        radius: 120,
+                                        centerOffset: 0
+                                    }
+                                ]
+                        }
+                    ]"
+                       style="width:550px; height: 350px"
+                       jqx-theme="Theme"></jqx-chart>
+        </div>
+        <div class="col-md-6 jqx-right-align  ">
+            <jqx-chart jqx-source="Chartsource2"
+                       jqx-title="'Renewal Required'"
+                       jqx-description="'Program wise'"
+                       jqx-series-groups="[
+                        {
+                            type: 'pie',
+                            showLabels: true,
+                            series:
+                                [
+                                    {
+                                        dataField: 'TotalRegistraion',
+                                        displayText: 'Course',
+                                        labelRadius: 100,
+                                        initialAngle: 15,
+                                        radius: 120,
+                                        centerOffset: 0
+                                    }
+                                ]
+                        }
+                    ]"
+                       style="width: 550px; height: 350px"
+                       jqx-theme="Theme"></jqx-chart>
+        </div>
+    </div>
+    <div class="row">
+        <fieldset>
+            <legend>Renewal Required</legend>
+            <jqx-grid jqx-create="createWidget"
+                      jqx-columns="[
+                        { text: 'Id', datafield: 'Id', hidden: true },
+                        { text: 'StudentId', datafield: 'StudentId', hidden: true },
+                      { text: 'Name', datafield: 'Name', width: '20%' },
+                      { text: 'Course', datafield: 'Course', width: '20%' },
+                      { text: 'Batch', datafield: 'PreferedBatch', width: '20%' },
+                      { text: 'Contact No', datafield: 'PhoneNumber', width: '10%' },
+                      { text: 'Registration Date', datafield: 'RegistrationDate', width: '10%' ,cellsformat: 'dd/MM/yyyy'},
+                      { text: 'Expiry Date', datafield: 'ExpiryDate', width: '10%' ,cellsformat: 'dd/MM/yyyy' ,cellsrenderer:CompareDate},
+                      
+                      { text: '', width: '10%' ,cellsalign: 'right', cellsrenderer: Renew}
+                      ]"
+                       jqx-settings="RenewalGrid"
+                      jqx-columnsresize=true
+                      jqx-sortable=true
+                      jqx-source="sourceRenewal"
+                      jqx-width="'100%'"
+                      jqx-height="250"
+                      jqx-theme="Theme"></jqx-grid>
+        </fieldset>
+    </div>
+    <br/>
+    <div class="row">
+      
+        <fieldset>
+            <legend>New Inquiry / Followup</legend>
+            <jqx-grid jqx-create="createWidget"
+                      jqx-columns="[
+                      { text: 'Id', datafield: 'Id', hidden: true },
+                       { text: 'Name', datafield: 'Name', width: '20%' },
+                      { text: 'Course', datafield: 'Course', width: '20%' },
+                      { text: 'Prefered Batch', datafield: 'PreferedBatch', width: '10%' },
+                      { text: 'Contact No', datafield: 'PhoneNumber', width: '20%' },
+                      { text: 'Inquiry Date', datafield: 'InquiryDate', width: '10%' ,cellsformat: 'dd/MM/yyyy'},
+                      { text: '', width: '10%', cellsrenderer: ViewEdit  },
+                        { text: '', width: '10%', cellsrenderer: Register,  },
+                      ]"
+                      jqx-columnsresize=true
+                      jqx-sortable=true
+                      jqx-source="sourceInquiry"
+                      jqx-width="'100%'"
+                      jqx-height="250"
+                      jqx-settings="InquiryGrid"
+                      jqx-theme="Theme"></jqx-grid>
+        </fieldset>
+    </div>
+
+</div>
+@section scripts {
+    <script type="text/javascript" src="~/JS/DashboardController.js"></script>
+}

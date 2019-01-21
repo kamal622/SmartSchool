@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewBag.Title = "ConfirmMessage";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div ng-controller="ConfirmMessageCtrl">
+
+    <div>
+        Modal Window
+    </div>
+    <div>
+        <div>
+            <label  >@ViewBag.Message</label>
+        </div>
+        <div>
+            Do you want to Add Inquiry? {{Message}}
+        </div>
+        <div>
+            <div style="float: right; margin-top: 15px;">
+                <jqx-button jqx-on-click="Ok()" style="margin-right: 10px" jqx-theme="Theme">Yes</jqx-button>
+                <jqx-button jqx-on-click="Cancel()" jqx-theme="Theme">No</jqx-button>
+            </div>
+        </div>
+    </div>
+    </div>

@@ -1,0 +1,28 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+
+<div ng-controller="DashboardCtrl">
+    <div class="row">
+        <fieldset>
+            <legend>New Inquiry / Followup</legend>
+            <jqx-grid jqx-create="createWidget"
+                      jqx-columns="[
+                      { text: 'Name', datafield: 'name', width: 250 },
+                      { text: 'Course', datafield: 'CourseName', width: 150 },
+                      { text: 'Prefered Batch', datafield: 'PreferedBatch', width: 150 },
+                      { text: 'Contact No', datafield: 'PhoneNumber', width: 150 },
+                      { text: 'Inquiry Date', datafield: 'InquiryDate', width: 100 },
+                      { text: 'Note', datafield: 'Note' },
+                      { text: 'Hide', datafield: 'Id', width: 60 }
+                      ]"
+                      jqx-width="'100%'"
+                      jqx-height="250"
+                      jqx-theme="Theme"></jqx-grid>
+        </fieldset>
+    </div>
+</div>
+@section scripts {
+    <script type="text/javascript" src="~/JS/DashboardController.js"></script>
+}

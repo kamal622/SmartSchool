@@ -1,0 +1,1414 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SmartSchoolDataModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ClaimType" Type="nvarchar(max)" />
+          <Property Name="ClaimValue" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="datetime" />
+          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Batches">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="500" />
+          <Property Name="TimeFrom" Type="time" Precision="7" Nullable="false" />
+          <Property Name="TimeTo" Type="time" Precision="7" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="Description" Type="varchar(max)" />
+          <Property Name="BatchCapacity" Type="int" />
+          <Property Name="SchoolId" Type="int" Nullable="false" />
+          <Property Name="OnSunday" Type="bit" Nullable="false" />
+          <Property Name="OnMonday" Type="bit" Nullable="false" />
+          <Property Name="OnTuesday" Type="bit" Nullable="false" />
+          <Property Name="OnWednesday" Type="bit" Nullable="false" />
+          <Property Name="OnThursday" Type="bit" Nullable="false" />
+          <Property Name="OnFriday" Type="bit" Nullable="false" />
+          <Property Name="OnSaturday" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="500" />
+          <Property Name="Description" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="Country">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="500" />
+          <Property Name="Description" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="DurationTypes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Type" Type="varchar" MaxLength="500" />
+          <Property Name="Detail" Type="varchar(max)" />
+          <Property Name="SchoolId" Type="int" />
+        </EntityType>
+        <EntityType Name="Fees">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProgramId" Type="int" Nullable="false" />
+          <Property Name="DurationId" Type="int" Nullable="false" />
+          <Property Name="Description" Type="varchar(max)" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="TotalFees" Type="float" />
+          <Property Name="AdvanceFees" Type="float" />
+        </EntityType>
+        <EntityType Name="Inquiry">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="500" />
+          <Property Name="StudentId" Type="int" />
+          <Property Name="Description" Type="varchar(max)" />
+          <Property Name="InterestedIn" Type="int" />
+          <Property Name="OtherInterest" Type="int" />
+          <Property Name="CanJoinFrom" Type="datetime" />
+          <Property Name="InquiryDate" Type="datetime" />
+          <Property Name="Remarks" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="Programs">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="250" />
+          <Property Name="Description" Type="varchar(max)" />
+          <Property Name="IsAvailable" Type="bit" Nullable="false" />
+          <Property Name="TotalInstruments" Type="int" />
+          <Property Name="TotalTeachers" Type="int" />
+          <Property Name="TotalBatches" Type="int" />
+          <Property Name="TotalstudentCapacityPerBatch" Type="int" />
+          <Property Name="SchoolId" Type="int" />
+        </EntityType>
+        <EntityType Name="Registration">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StudentId" Type="int" Nullable="false" />
+          <Property Name="ProgramId" Type="int" Nullable="false" />
+          <Property Name="RegisteredOn" Type="datetime" Nullable="false" />
+          <Property Name="ValidUpto" Type="datetime" Nullable="false" />
+          <Property Name="Remarks" Type="varchar(max)" />
+          <Property Name="RegisteredBy" Type="nvarchar" MaxLength="128" />
+          <Property Name="RegistrationNo" Type="nvarchar" MaxLength="500" />
+          <Property Name="DurationTypeId" Type="int" />
+          <Property Name="SchoolId" Type="int" />
+        </EntityType>
+        <EntityType Name="Schools">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="500" />
+          <Property Name="TypeId" Type="int" />
+          <Property Name="Owner" Type="varchar" MaxLength="250" />
+          <Property Name="MobileNo" Type="varchar" MaxLength="50" />
+          <Property Name="Address" Type="varchar" MaxLength="500" />
+          <Property Name="Description" Type="varchar(max)" />
+          <Property Name="StudentStrength" Type="int" />
+          <Property Name="RegisteredOn" Type="datetime" />
+        </EntityType>
+        <EntityType Name="SchoolTypes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="500" />
+          <Property Name="Description" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="State">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="500" />
+          <Property Name="Description" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="Students">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="MiddleName" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="LastName" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="CurrentAddress" Type="varchar" MaxLength="500" />
+          <Property Name="CityId" Type="int" />
+          <Property Name="Pincode" Type="nchar" MaxLength="10" />
+          <Property Name="StateId" Type="int" />
+          <Property Name="CountryId" Type="int" />
+          <Property Name="Mobile" Type="varchar" MaxLength="50" />
+          <Property Name="DOB" Type="datetime" />
+          <Property Name="Email" Type="varchar" MaxLength="500" />
+          <Property Name="School" Type="varchar" MaxLength="250" />
+          <Property Name="SchoolAddress" Type="varchar" MaxLength="500" />
+          <Property Name="College" Type="varchar" MaxLength="250" />
+          <Property Name="CollegeAddress" Type="varchar" MaxLength="500" />
+          <Property Name="ContactPersonName" Type="varchar" MaxLength="500" />
+          <Property Name="ContactPersonPhone" Type="varchar" MaxLength="50" />
+          <Property Name="ContactPersonRelationship" Type="varchar" MaxLength="250" />
+          <Property Name="HasPhoto" Type="bit" Nullable="false" />
+          <Property Name="IsRegistered" Type="bit" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="AddedOn" Type="datetime" />
+          <Property Name="AddedBy" Type="nvarchar" MaxLength="128" />
+        </EntityType>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DurationTypes_Schools">
+          <End Role="Schools" Type="Self.Schools" Multiplicity="0..1" />
+          <End Role="DurationTypes" Type="Self.DurationTypes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Schools">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DurationTypes">
+              <PropertyRef Name="SchoolId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Fees_DurationTypes">
+          <End Role="DurationTypes" Type="Self.DurationTypes" Multiplicity="1" />
+          <End Role="Fees" Type="Self.Fees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DurationTypes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Fees">
+              <PropertyRef Name="DurationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Fees_Programs">
+          <End Role="Programs" Type="Self.Programs" Multiplicity="1" />
+          <End Role="Fees" Type="Self.Fees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Programs">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Fees">
+              <PropertyRef Name="ProgramId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Inquiry_Programs">
+          <End Role="Programs" Type="Self.Programs" Multiplicity="0..1" />
+          <End Role="Inquiry" Type="Self.Inquiry" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Programs">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Inquiry">
+              <PropertyRef Name="InterestedIn" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Inquiry_Programs1">
+          <End Role="Programs" Type="Self.Programs" Multiplicity="0..1" />
+          <End Role="Inquiry" Type="Self.Inquiry" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Programs">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Inquiry">
+              <PropertyRef Name="OtherInterest" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Inquiry_Students">
+          <End Role="Students" Type="Self.Students" Multiplicity="0..1" />
+          <End Role="Inquiry" Type="Self.Inquiry" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Students">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Inquiry">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Programs_Schools">
+          <End Role="Schools" Type="Self.Schools" Multiplicity="0..1" />
+          <End Role="Programs" Type="Self.Programs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Schools">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Programs">
+              <PropertyRef Name="SchoolId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Registration_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+          <End Role="Registration" Type="Self.Registration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Registration">
+              <PropertyRef Name="RegisteredBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Registration_DurationTypes">
+          <End Role="DurationTypes" Type="Self.DurationTypes" Multiplicity="0..1" />
+          <End Role="Registration" Type="Self.Registration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DurationTypes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Registration">
+              <PropertyRef Name="DurationTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Registration_Programs">
+          <End Role="Programs" Type="Self.Programs" Multiplicity="1" />
+          <End Role="Registration" Type="Self.Registration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Programs">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Registration">
+              <PropertyRef Name="ProgramId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Registration_Schools">
+          <End Role="Schools" Type="Self.Schools" Multiplicity="0..1" />
+          <End Role="Registration" Type="Self.Registration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Schools">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Registration">
+              <PropertyRef Name="SchoolId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Registration_Students">
+          <End Role="Students" Type="Self.Students" Multiplicity="1" />
+          <End Role="Registration" Type="Self.Registration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Students">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Registration">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Schools_SchoolTypes">
+          <End Role="SchoolTypes" Type="Self.SchoolTypes" Multiplicity="0..1" />
+          <End Role="Schools" Type="Self.Schools" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SchoolTypes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Schools">
+              <PropertyRef Name="TypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Students_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+          <End Role="Students" Type="Self.Students" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Students">
+              <PropertyRef Name="AddedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Students_City">
+          <End Role="City" Type="Self.City" Multiplicity="0..1" />
+          <End Role="Students" Type="Self.Students" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Students">
+              <PropertyRef Name="CityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Students_Country">
+          <End Role="Country" Type="Self.Country" Multiplicity="0..1" />
+          <End Role="Students" Type="Self.Students" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Students">
+              <PropertyRef Name="CountryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Students_State">
+          <End Role="State" Type="Self.State" Multiplicity="0..1" />
+          <End Role="Students" Type="Self.Students" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="State">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Students">
+              <PropertyRef Name="StateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SmartSchoolDataModelStoreContainer">
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Batches" EntityType="Self.Batches" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="City" EntityType="Self.City" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Country" EntityType="Self.Country" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DurationTypes" EntityType="Self.DurationTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Fees" EntityType="Self.Fees" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Inquiry" EntityType="Self.Inquiry" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Programs" EntityType="Self.Programs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Registration" EntityType="Self.Registration" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Schools" EntityType="Self.Schools" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SchoolTypes" EntityType="Self.SchoolTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="State" EntityType="Self.State" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Students" EntityType="Self.Students" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DurationTypes_Schools" Association="Self.FK_DurationTypes_Schools">
+            <End Role="Schools" EntitySet="Schools" />
+            <End Role="DurationTypes" EntitySet="DurationTypes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Fees_DurationTypes" Association="Self.FK_Fees_DurationTypes">
+            <End Role="DurationTypes" EntitySet="DurationTypes" />
+            <End Role="Fees" EntitySet="Fees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Fees_Programs" Association="Self.FK_Fees_Programs">
+            <End Role="Programs" EntitySet="Programs" />
+            <End Role="Fees" EntitySet="Fees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Inquiry_Programs" Association="Self.FK_Inquiry_Programs">
+            <End Role="Programs" EntitySet="Programs" />
+            <End Role="Inquiry" EntitySet="Inquiry" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Inquiry_Programs1" Association="Self.FK_Inquiry_Programs1">
+            <End Role="Programs" EntitySet="Programs" />
+            <End Role="Inquiry" EntitySet="Inquiry" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Inquiry_Students" Association="Self.FK_Inquiry_Students">
+            <End Role="Students" EntitySet="Students" />
+            <End Role="Inquiry" EntitySet="Inquiry" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Programs_Schools" Association="Self.FK_Programs_Schools">
+            <End Role="Schools" EntitySet="Schools" />
+            <End Role="Programs" EntitySet="Programs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Registration_AspNetUsers" Association="Self.FK_Registration_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Registration" EntitySet="Registration" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Registration_DurationTypes" Association="Self.FK_Registration_DurationTypes">
+            <End Role="DurationTypes" EntitySet="DurationTypes" />
+            <End Role="Registration" EntitySet="Registration" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Registration_Programs" Association="Self.FK_Registration_Programs">
+            <End Role="Programs" EntitySet="Programs" />
+            <End Role="Registration" EntitySet="Registration" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Registration_Schools" Association="Self.FK_Registration_Schools">
+            <End Role="Schools" EntitySet="Schools" />
+            <End Role="Registration" EntitySet="Registration" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Registration_Students" Association="Self.FK_Registration_Students">
+            <End Role="Students" EntitySet="Students" />
+            <End Role="Registration" EntitySet="Registration" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Schools_SchoolTypes" Association="Self.FK_Schools_SchoolTypes">
+            <End Role="SchoolTypes" EntitySet="SchoolTypes" />
+            <End Role="Schools" EntitySet="Schools" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Students_AspNetUsers" Association="Self.FK_Students_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Students" EntitySet="Students" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Students_City" Association="Self.FK_Students_City">
+            <End Role="City" EntitySet="City" />
+            <End Role="Students" EntitySet="Students" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Students_Country" Association="Self.FK_Students_Country">
+            <End Role="Country" EntitySet="Country" />
+            <End Role="Students" EntitySet="Students" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Students_State" Association="Self.FK_Students_State">
+            <End Role="State" EntitySet="State" />
+            <End Role="Students" EntitySet="Students" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SmartSchoolDataModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="SmartSchoolContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AspNetRoles" EntityType="SmartSchoolDataModel.AspNetRole" />
+          <EntitySet Name="AspNetUserClaims" EntityType="SmartSchoolDataModel.AspNetUserClaim" />
+          <EntitySet Name="AspNetUserLogins" EntityType="SmartSchoolDataModel.AspNetUserLogin" />
+          <EntitySet Name="AspNetUsers" EntityType="SmartSchoolDataModel.AspNetUser" />
+          <EntitySet Name="Batches" EntityType="SmartSchoolDataModel.Batch" />
+          <EntitySet Name="Cities" EntityType="SmartSchoolDataModel.City" />
+          <EntitySet Name="Countries" EntityType="SmartSchoolDataModel.Country" />
+          <EntitySet Name="DurationTypes" EntityType="SmartSchoolDataModel.DurationType" />
+          <EntitySet Name="Fees" EntityType="SmartSchoolDataModel.Fee" />
+          <EntitySet Name="Inquiries" EntityType="SmartSchoolDataModel.Inquiry" />
+          <EntitySet Name="Programs" EntityType="SmartSchoolDataModel.Program" />
+          <EntitySet Name="Registrations" EntityType="SmartSchoolDataModel.Registration" />
+          <EntitySet Name="Schools" EntityType="SmartSchoolDataModel.School" />
+          <EntitySet Name="SchoolTypes" EntityType="SmartSchoolDataModel.SchoolType" />
+          <EntitySet Name="States" EntityType="SmartSchoolDataModel.State" />
+          <EntitySet Name="Students" EntityType="SmartSchoolDataModel.Student" />
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="SmartSchoolDataModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaim" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="SmartSchoolDataModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogin" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Registration_AspNetUsers" Association="SmartSchoolDataModel.FK_Registration_AspNetUsers">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="Registration" EntitySet="Registrations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Students_AspNetUsers" Association="SmartSchoolDataModel.FK_Students_AspNetUsers">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="Student" EntitySet="Students" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Students_City" Association="SmartSchoolDataModel.FK_Students_City">
+            <End Role="City" EntitySet="Cities" />
+            <End Role="Student" EntitySet="Students" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Students_Country" Association="SmartSchoolDataModel.FK_Students_Country">
+            <End Role="Country" EntitySet="Countries" />
+            <End Role="Student" EntitySet="Students" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DurationTypes_Schools" Association="SmartSchoolDataModel.FK_DurationTypes_Schools">
+            <End Role="School" EntitySet="Schools" />
+            <End Role="DurationType" EntitySet="DurationTypes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Fees_DurationTypes" Association="SmartSchoolDataModel.FK_Fees_DurationTypes">
+            <End Role="DurationType" EntitySet="DurationTypes" />
+            <End Role="Fee" EntitySet="Fees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Registration_DurationTypes" Association="SmartSchoolDataModel.FK_Registration_DurationTypes">
+            <End Role="DurationType" EntitySet="DurationTypes" />
+            <End Role="Registration" EntitySet="Registrations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Fees_Programs" Association="SmartSchoolDataModel.FK_Fees_Programs">
+            <End Role="Program" EntitySet="Programs" />
+            <End Role="Fee" EntitySet="Fees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Inquiry_Programs" Association="SmartSchoolDataModel.FK_Inquiry_Programs">
+            <End Role="Program" EntitySet="Programs" />
+            <End Role="Inquiry" EntitySet="Inquiries" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Inquiry_Programs1" Association="SmartSchoolDataModel.FK_Inquiry_Programs1">
+            <End Role="Program" EntitySet="Programs" />
+            <End Role="Inquiry" EntitySet="Inquiries" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Inquiry_Students" Association="SmartSchoolDataModel.FK_Inquiry_Students">
+            <End Role="Student" EntitySet="Students" />
+            <End Role="Inquiry" EntitySet="Inquiries" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Programs_Schools" Association="SmartSchoolDataModel.FK_Programs_Schools">
+            <End Role="School" EntitySet="Schools" />
+            <End Role="Program" EntitySet="Programs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Registration_Programs" Association="SmartSchoolDataModel.FK_Registration_Programs">
+            <End Role="Program" EntitySet="Programs" />
+            <End Role="Registration" EntitySet="Registrations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Registration_Schools" Association="SmartSchoolDataModel.FK_Registration_Schools">
+            <End Role="School" EntitySet="Schools" />
+            <End Role="Registration" EntitySet="Registrations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Registration_Students" Association="SmartSchoolDataModel.FK_Registration_Students">
+            <End Role="Student" EntitySet="Students" />
+            <End Role="Registration" EntitySet="Registrations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Schools_SchoolTypes" Association="SmartSchoolDataModel.FK_Schools_SchoolTypes">
+            <End Role="SchoolType" EntitySet="SchoolTypes" />
+            <End Role="School" EntitySet="Schools" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Students_State" Association="SmartSchoolDataModel.FK_Students_State">
+            <End Role="State" EntitySet="States" />
+            <End Role="Student" EntitySet="Students" />
+          </AssociationSet>
+          <AssociationSet Name="AspNetUserRoles" Association="SmartSchoolDataModel.AspNetUserRoles">
+            <End Role="AspNetRole" EntitySet="AspNetRoles" />
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="AspNetRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUsers" Relationship="SmartSchoolDataModel.AspNetUserRoles" FromRole="AspNetRole" ToRole="AspNetUser" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaim">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="SmartSchoolDataModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaim" ToRole="AspNetUser" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogin">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ProviderKey" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="SmartSchoolDataModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogin" ToRole="AspNetUser" />
+        </EntityType>
+        <EntityType Name="AspNetUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUserClaims" Relationship="SmartSchoolDataModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserClaim" />
+          <NavigationProperty Name="AspNetUserLogins" Relationship="SmartSchoolDataModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserLogin" />
+          <NavigationProperty Name="Registrations" Relationship="SmartSchoolDataModel.FK_Registration_AspNetUsers" FromRole="AspNetUser" ToRole="Registration" />
+          <NavigationProperty Name="Students" Relationship="SmartSchoolDataModel.FK_Students_AspNetUsers" FromRole="AspNetUser" ToRole="Student" />
+          <NavigationProperty Name="AspNetRoles" Relationship="SmartSchoolDataModel.AspNetUserRoles" FromRole="AspNetUser" ToRole="AspNetRole" />
+        </EntityType>
+        <EntityType Name="Batch">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="TimeFrom" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="TimeTo" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="BatchCapacity" Type="Int32" />
+          <Property Name="SchoolId" Type="Int32" Nullable="false" />
+          <Property Name="OnSunday" Type="Boolean" Nullable="false" />
+          <Property Name="OnMonday" Type="Boolean" Nullable="false" />
+          <Property Name="OnTuesday" Type="Boolean" Nullable="false" />
+          <Property Name="OnWednesday" Type="Boolean" Nullable="false" />
+          <Property Name="OnThursday" Type="Boolean" Nullable="false" />
+          <Property Name="OnFriday" Type="Boolean" Nullable="false" />
+          <Property Name="OnSaturday" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Students" Relationship="SmartSchoolDataModel.FK_Students_City" FromRole="City" ToRole="Student" />
+        </EntityType>
+        <EntityType Name="Country">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Students" Relationship="SmartSchoolDataModel.FK_Students_Country" FromRole="Country" ToRole="Student" />
+        </EntityType>
+        <EntityType Name="DurationType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Type" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Detail" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="SchoolId" Type="Int32" />
+          <NavigationProperty Name="School" Relationship="SmartSchoolDataModel.FK_DurationTypes_Schools" FromRole="DurationType" ToRole="School" />
+          <NavigationProperty Name="Fees" Relationship="SmartSchoolDataModel.FK_Fees_DurationTypes" FromRole="DurationType" ToRole="Fee" />
+          <NavigationProperty Name="Registrations" Relationship="SmartSchoolDataModel.FK_Registration_DurationTypes" FromRole="DurationType" ToRole="Registration" />
+        </EntityType>
+        <EntityType Name="Fee">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProgramId" Type="Int32" Nullable="false" />
+          <Property Name="DurationId" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="TotalFees" Type="Double" />
+          <Property Name="AdvanceFees" Type="Double" />
+          <NavigationProperty Name="DurationType" Relationship="SmartSchoolDataModel.FK_Fees_DurationTypes" FromRole="Fee" ToRole="DurationType" />
+          <NavigationProperty Name="Program" Relationship="SmartSchoolDataModel.FK_Fees_Programs" FromRole="Fee" ToRole="Program" />
+        </EntityType>
+        <EntityType Name="Inquiry">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="StudentId" Type="Int32" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="InterestedIn" Type="Int32" />
+          <Property Name="OtherInterest" Type="Int32" />
+          <Property Name="CanJoinFrom" Type="DateTime" Precision="3" />
+          <Property Name="InquiryDate" Type="DateTime" Precision="3" />
+          <Property Name="Remarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Program" Relationship="SmartSchoolDataModel.FK_Inquiry_Programs" FromRole="Inquiry" ToRole="Program" />
+          <NavigationProperty Name="Program1" Relationship="SmartSchoolDataModel.FK_Inquiry_Programs1" FromRole="Inquiry" ToRole="Program" />
+          <NavigationProperty Name="Student" Relationship="SmartSchoolDataModel.FK_Inquiry_Students" FromRole="Inquiry" ToRole="Student" />
+        </EntityType>
+        <EntityType Name="Program">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="IsAvailable" Type="Boolean" Nullable="false" />
+          <Property Name="TotalInstruments" Type="Int32" />
+          <Property Name="TotalTeachers" Type="Int32" />
+          <Property Name="TotalBatches" Type="Int32" />
+          <Property Name="TotalstudentCapacityPerBatch" Type="Int32" />
+          <Property Name="SchoolId" Type="Int32" />
+          <NavigationProperty Name="Fees" Relationship="SmartSchoolDataModel.FK_Fees_Programs" FromRole="Program" ToRole="Fee" />
+          <NavigationProperty Name="Inquiries" Relationship="SmartSchoolDataModel.FK_Inquiry_Programs" FromRole="Program" ToRole="Inquiry" />
+          <NavigationProperty Name="Inquiries1" Relationship="SmartSchoolDataModel.FK_Inquiry_Programs1" FromRole="Program" ToRole="Inquiry" />
+          <NavigationProperty Name="School" Relationship="SmartSchoolDataModel.FK_Programs_Schools" FromRole="Program" ToRole="School" />
+          <NavigationProperty Name="Registrations" Relationship="SmartSchoolDataModel.FK_Registration_Programs" FromRole="Program" ToRole="Registration" />
+        </EntityType>
+        <EntityType Name="Registration">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StudentId" Type="Int32" Nullable="false" />
+          <Property Name="ProgramId" Type="Int32" Nullable="false" />
+          <Property Name="RegisteredOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ValidUpto" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Remarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="RegisteredBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="RegistrationNo" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="DurationTypeId" Type="Int32" />
+          <Property Name="SchoolId" Type="Int32" />
+          <NavigationProperty Name="AspNetUser" Relationship="SmartSchoolDataModel.FK_Registration_AspNetUsers" FromRole="Registration" ToRole="AspNetUser" />
+          <NavigationProperty Name="DurationType" Relationship="SmartSchoolDataModel.FK_Registration_DurationTypes" FromRole="Registration" ToRole="DurationType" />
+          <NavigationProperty Name="Program" Relationship="SmartSchoolDataModel.FK_Registration_Programs" FromRole="Registration" ToRole="Program" />
+          <NavigationProperty Name="School" Relationship="SmartSchoolDataModel.FK_Registration_Schools" FromRole="Registration" ToRole="School" />
+          <NavigationProperty Name="Student" Relationship="SmartSchoolDataModel.FK_Registration_Students" FromRole="Registration" ToRole="Student" />
+        </EntityType>
+        <EntityType Name="School">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="TypeId" Type="Int32" />
+          <Property Name="Owner" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="MobileNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="StudentStrength" Type="Int32" />
+          <Property Name="RegisteredOn" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="DurationTypes" Relationship="SmartSchoolDataModel.FK_DurationTypes_Schools" FromRole="School" ToRole="DurationType" />
+          <NavigationProperty Name="Programs" Relationship="SmartSchoolDataModel.FK_Programs_Schools" FromRole="School" ToRole="Program" />
+          <NavigationProperty Name="Registrations" Relationship="SmartSchoolDataModel.FK_Registration_Schools" FromRole="School" ToRole="Registration" />
+          <NavigationProperty Name="SchoolType" Relationship="SmartSchoolDataModel.FK_Schools_SchoolTypes" FromRole="School" ToRole="SchoolType" />
+        </EntityType>
+        <EntityType Name="SchoolType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Schools" Relationship="SmartSchoolDataModel.FK_Schools_SchoolTypes" FromRole="SchoolType" ToRole="School" />
+        </EntityType>
+        <EntityType Name="State">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Students" Relationship="SmartSchoolDataModel.FK_Students_State" FromRole="State" ToRole="Student" />
+        </EntityType>
+        <EntityType Name="Student">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="MiddleName" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="CurrentAddress" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="CityId" Type="Int32" />
+          <Property Name="Pincode" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="StateId" Type="Int32" />
+          <Property Name="CountryId" Type="Int32" />
+          <Property Name="Mobile" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DOB" Type="DateTime" Precision="3" />
+          <Property Name="Email" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="School" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="SchoolAddress" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="College" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="CollegeAddress" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="ContactPersonName" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="ContactPersonPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ContactPersonRelationship" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="HasPhoto" Type="Boolean" Nullable="false" />
+          <Property Name="IsRegistered" Type="Boolean" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="AddedOn" Type="DateTime" Precision="3" />
+          <Property Name="AddedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="SmartSchoolDataModel.FK_Students_AspNetUsers" FromRole="Student" ToRole="AspNetUser" />
+          <NavigationProperty Name="City" Relationship="SmartSchoolDataModel.FK_Students_City" FromRole="Student" ToRole="City" />
+          <NavigationProperty Name="Country" Relationship="SmartSchoolDataModel.FK_Students_Country" FromRole="Student" ToRole="Country" />
+          <NavigationProperty Name="Inquiries" Relationship="SmartSchoolDataModel.FK_Inquiry_Students" FromRole="Student" ToRole="Inquiry" />
+          <NavigationProperty Name="Registrations" Relationship="SmartSchoolDataModel.FK_Registration_Students" FromRole="Student" ToRole="Registration" />
+          <NavigationProperty Name="State" Relationship="SmartSchoolDataModel.FK_Students_State" FromRole="Student" ToRole="State" />
+        </EntityType>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Type="SmartSchoolDataModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="SmartSchoolDataModel.AspNetUserClaim" Role="AspNetUserClaim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaim">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Type="SmartSchoolDataModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="SmartSchoolDataModel.AspNetUserLogin" Role="AspNetUserLogin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogin">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Registration_AspNetUsers">
+          <End Type="SmartSchoolDataModel.AspNetUser" Role="AspNetUser" Multiplicity="0..1" />
+          <End Type="SmartSchoolDataModel.Registration" Role="Registration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Registration">
+              <PropertyRef Name="RegisteredBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Students_AspNetUsers">
+          <End Type="SmartSchoolDataModel.AspNetUser" Role="AspNetUser" Multiplicity="0..1" />
+          <End Type="SmartSchoolDataModel.Student" Role="Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="AddedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Students_City">
+          <End Type="SmartSchoolDataModel.City" Role="City" Multiplicity="0..1" />
+          <End Type="SmartSchoolDataModel.Student" Role="Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="CityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Students_Country">
+          <End Type="SmartSchoolDataModel.Country" Role="Country" Multiplicity="0..1" />
+          <End Type="SmartSchoolDataModel.Student" Role="Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="CountryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DurationTypes_Schools">
+          <End Type="SmartSchoolDataModel.School" Role="School" Multiplicity="0..1" />
+          <End Type="SmartSchoolDataModel.DurationType" Role="DurationType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="School">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DurationType">
+              <PropertyRef Name="SchoolId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Fees_DurationTypes">
+          <End Type="SmartSchoolDataModel.DurationType" Role="DurationType" Multiplicity="1" />
+          <End Type="SmartSchoolDataModel.Fee" Role="Fee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DurationType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Fee">
+              <PropertyRef Name="DurationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Registration_DurationTypes">
+          <End Type="SmartSchoolDataModel.DurationType" Role="DurationType" Multiplicity="0..1" />
+          <End Type="SmartSchoolDataModel.Registration" Role="Registration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DurationType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Registration">
+              <PropertyRef Name="DurationTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Fees_Programs">
+          <End Type="SmartSchoolDataModel.Program" Role="Program" Multiplicity="1" />
+          <End Type="SmartSchoolDataModel.Fee" Role="Fee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Program">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Fee">
+              <PropertyRef Name="ProgramId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Inquiry_Programs">
+          <End Type="SmartSchoolDataModel.Program" Role="Program" Multiplicity="0..1" />
+          <End Type="SmartSchoolDataModel.Inquiry" Role="Inquiry" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Program">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Inquiry">
+              <PropertyRef Name="InterestedIn" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Inquiry_Programs1">
+          <End Type="SmartSchoolDataModel.Program" Role="Program" Multiplicity="0..1" />
+          <End Type="SmartSchoolDataModel.Inquiry" Role="Inquiry" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Program">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Inquiry">
+              <PropertyRef Name="OtherInterest" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Inquiry_Students">
+          <End Type="SmartSchoolDataModel.Student" Role="Student" Multiplicity="0..1" />
+          <End Type="SmartSchoolDataModel.Inquiry" Role="Inquiry" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Inquiry">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Programs_Schools">
+          <End Type="SmartSchoolDataModel.School" Role="School" Multiplicity="0..1" />
+          <End Type="SmartSchoolDataModel.Program" Role="Program" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="School">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Program">
+              <PropertyRef Name="SchoolId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Registration_Programs">
+          <End Type="SmartSchoolDataModel.Program" Role="Program" Multiplicity="1" />
+          <End Type="SmartSchoolDataModel.Registration" Role="Registration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Program">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Registration">
+              <PropertyRef Name="ProgramId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Registration_Schools">
+          <End Type="SmartSchoolDataModel.School" Role="School" Multiplicity="0..1" />
+          <End Type="SmartSchoolDataModel.Registration" Role="Registration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="School">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Registration">
+              <PropertyRef Name="SchoolId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Registration_Students">
+          <End Type="SmartSchoolDataModel.Student" Role="Student" Multiplicity="1" />
+          <End Type="SmartSchoolDataModel.Registration" Role="Registration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Registration">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Schools_SchoolTypes">
+          <End Type="SmartSchoolDataModel.SchoolType" Role="SchoolType" Multiplicity="0..1" />
+          <End Type="SmartSchoolDataModel.School" Role="School" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SchoolType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="School">
+              <PropertyRef Name="TypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Students_State">
+          <End Type="SmartSchoolDataModel.State" Role="State" Multiplicity="0..1" />
+          <End Type="SmartSchoolDataModel.Student" Role="Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="State">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="StateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AspNetUserRoles">
+          <End Type="SmartSchoolDataModel.AspNetRole" Role="AspNetRole" Multiplicity="*" />
+          <End Type="SmartSchoolDataModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SmartSchoolDataModelStoreContainer" CdmEntityContainer="SmartSchoolContext">
+          <EntitySetMapping Name="AspNetRoles">
+            <EntityTypeMapping TypeName="SmartSchoolDataModel.AspNetRole">
+              <MappingFragment StoreEntitySet="AspNetRoles">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserClaims">
+            <EntityTypeMapping TypeName="SmartSchoolDataModel.AspNetUserClaim">
+              <MappingFragment StoreEntitySet="AspNetUserClaims">
+                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserLogins">
+            <EntityTypeMapping TypeName="SmartSchoolDataModel.AspNetUserLogin">
+              <MappingFragment StoreEntitySet="AspNetUserLogins">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUsers">
+            <EntityTypeMapping TypeName="SmartSchoolDataModel.AspNetUser">
+              <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Batches">
+            <EntityTypeMapping TypeName="SmartSchoolDataModel.Batch">
+              <MappingFragment StoreEntitySet="Batches">
+                <ScalarProperty Name="OnSaturday" ColumnName="OnSaturday" />
+                <ScalarProperty Name="OnFriday" ColumnName="OnFriday" />
+                <ScalarProperty Name="OnThursday" ColumnName="OnThursday" />
+                <ScalarProperty Name="OnWednesday" ColumnName="OnWednesday" />
+                <ScalarProperty Name="OnTuesday" ColumnName="OnTuesday" />
+                <ScalarProperty Name="OnMonday" ColumnName="OnMonday" />
+                <ScalarProperty Name="OnSunday" ColumnName="OnSunday" />
+                <ScalarProperty Name="SchoolId" ColumnName="SchoolId" />
+                <ScalarProperty Name="BatchCapacity" ColumnName="BatchCapacity" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="TimeTo" ColumnName="TimeTo" />
+                <ScalarProperty Name="TimeFrom" ColumnName="TimeFrom" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cities">
+            <EntityTypeMapping TypeName="SmartSchoolDataModel.City">
+              <MappingFragment StoreEntitySet="City">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Countries">
+            <EntityTypeMapping TypeName="SmartSchoolDataModel.Country">
+              <MappingFragment StoreEntitySet="Country">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DurationTypes">
+            <EntityTypeMapping TypeName="SmartSchoolDataModel.DurationType">
+              <MappingFragment StoreEntitySet="DurationTypes">
+                <ScalarProperty Name="SchoolId" ColumnName="SchoolId" />
+                <ScalarProperty Name="Detail" ColumnName="Detail" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Fees">
+            <EntityTypeMapping TypeName="SmartSchoolDataModel.Fee">
+              <MappingFragment StoreEntitySet="Fees">
+                <ScalarProperty Name="AdvanceFees" ColumnName="AdvanceFees" />
+                <ScalarProperty Name="TotalFees" ColumnName="TotalFees" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="DurationId" ColumnName="DurationId" />
+                <ScalarProperty Name="ProgramId" ColumnName="ProgramId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Inquiries">
+            <EntityTypeMapping TypeName="SmartSchoolDataModel.Inquiry">
+              <MappingFragment StoreEntitySet="Inquiry">
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="InquiryDate" ColumnName="InquiryDate" />
+                <ScalarProperty Name="CanJoinFrom" ColumnName="CanJoinFrom" />
+                <ScalarProperty Name="OtherInterest" ColumnName="OtherInterest" />
+                <ScalarProperty Name="InterestedIn" ColumnName="InterestedIn" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Programs">
+            <EntityTypeMapping TypeName="SmartSchoolDataModel.Program">
+              <MappingFragment StoreEntitySet="Programs">
+                <ScalarProperty Name="SchoolId" ColumnName="SchoolId" />
+                <ScalarProperty Name="TotalstudentCapacityPerBatch" ColumnName="TotalstudentCapacityPerBatch" />
+                <ScalarProperty Name="TotalBatches" ColumnName="TotalBatches" />
+                <ScalarProperty Name="TotalTeachers" ColumnName="TotalTeachers" />
+                <ScalarProperty Name="TotalInstruments" ColumnName="TotalInstruments" />
+                <ScalarProperty Name="IsAvailable" ColumnName="IsAvailable" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Registrations">
+            <EntityTypeMapping TypeName="SmartSchoolDataModel.Registration">
+              <MappingFragment StoreEntitySet="Registration">
+                <ScalarProperty Name="SchoolId" ColumnName="SchoolId" />
+                <ScalarProperty Name="DurationTypeId" ColumnName="DurationTypeId" />
+                <ScalarProperty Name="RegistrationNo" ColumnName="RegistrationNo" />
+                <ScalarProperty Name="RegisteredBy" ColumnName="RegisteredBy" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="ValidUpto" ColumnName="ValidUpto" />
+                <ScalarProperty Name="RegisteredOn" ColumnName="RegisteredOn" />
+                <ScalarProperty Name="ProgramId" ColumnName="ProgramId" />
+                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Schools">
+            <EntityTypeMapping TypeName="SmartSchoolDataModel.School">
+              <MappingFragment StoreEntitySet="Schools">
+                <ScalarProperty Name="RegisteredOn" ColumnName="RegisteredOn" />
+                <ScalarProperty Name="StudentStrength" ColumnName="StudentStrength" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="TypeId" ColumnName="TypeId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SchoolTypes">
+            <EntityTypeMapping TypeName="SmartSchoolDataModel.SchoolType">
+              <MappingFragment StoreEntitySet="SchoolTypes">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="States">
+            <EntityTypeMapping TypeName="SmartSchoolDataModel.State">
+              <MappingFragment StoreEntitySet="State">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Students">
+            <EntityTypeMapping TypeName="SmartSchoolDataModel.Student">
+              <MappingFragment StoreEntitySet="Students">
+                <ScalarProperty Name="AddedBy" ColumnName="AddedBy" />
+                <ScalarProperty Name="AddedOn" ColumnName="AddedOn" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="IsRegistered" ColumnName="IsRegistered" />
+                <ScalarProperty Name="HasPhoto" ColumnName="HasPhoto" />
+                <ScalarProperty Name="ContactPersonRelationship" ColumnName="ContactPersonRelationship" />
+                <ScalarProperty Name="ContactPersonPhone" ColumnName="ContactPersonPhone" />
+                <ScalarProperty Name="ContactPersonName" ColumnName="ContactPersonName" />
+                <ScalarProperty Name="CollegeAddress" ColumnName="CollegeAddress" />
+                <ScalarProperty Name="College" ColumnName="College" />
+                <ScalarProperty Name="SchoolAddress" ColumnName="SchoolAddress" />
+                <ScalarProperty Name="School" ColumnName="School" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+                <ScalarProperty Name="StateId" ColumnName="StateId" />
+                <ScalarProperty Name="Pincode" ColumnName="Pincode" />
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
+                <ScalarProperty Name="CurrentAddress" ColumnName="CurrentAddress" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="AspNetUserRoles" TypeName="SmartSchoolDataModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+            <EndProperty Name="AspNetUser">
+              <ScalarProperty Name="Id" ColumnName="UserId" />
+            </EndProperty>
+            <EndProperty Name="AspNetRole">
+              <ScalarProperty Name="Id" ColumnName="RoleId" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

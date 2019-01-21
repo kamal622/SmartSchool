@@ -1,0 +1,482 @@
+﻿
+@{
+    ViewBag.Title = "StudentDetail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .panel {
+        border-color: #ddd;
+    }
+
+    .page-header {
+        border: none;
+        margin: 0;
+    }
+
+    .border-left-success {
+        border-left-color: #4caf50;
+    }
+
+    .border-left-lg {
+        border-left: 2px solid #4caf50;
+    }
+
+    .timeline-content {
+        margin-bottom: 20px;
+    }
+
+    .list-group-divider {
+        height: 1px;
+        display: block;
+        background-color: #e5e5e5;
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+</style>
+
+<div ng-controller="StudentDetailCtrl">
+    <div class="content-wraper">
+        <div class="content">
+
+            @*<div class="page-header">
+                    <div class="navbar navbar-default navbar-component navbar-xs">
+                        <ul class="nav navbar-nav visible-xs-block">
+                            <li class="full-width text-center">
+                                <a data-target="#navbar-filter" data-toggle="collapse" class="collapsed" aria-expanded="false">
+
+                                </a>
+                            </li>
+                        </ul>
+                        <div id="navbar-filter" class="navbar-collapse collapse">
+                            <ul class="nav navbar-nav element-active-slate-400">
+                                <li class="active"><a data-toggle="tab" href="#activity" aria-expanded="true"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
+                                <li class=""><a data-toggle="tab" href="#schedule" aria-expanded="false"><span class="glyphicon glyphicon-list-alt"></span> Details</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>*@
+
+            <div class="content">
+                <div class="row">
+                    <div class="col-lg-9">
+                        <div class="tabbable">
+                            <div class="tab-content">
+                                <div id="activity" class="tab-pane fade in active">
+                                    <div class="page-header">
+                                        <div class="navbar navbar-default navbar-component navbar-xs">
+                                            <ul class="nav navbar-nav visible-xs-block">
+                                                <li class="full-width text-center">
+                                                    <a data-target="#navbar-filter1" data-toggle="collapse" class="collapsed" aria-expanded="false">
+                                                        <i class="icon-menu7"></i>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                            <div id="navbar-filter1" class="navbar-collapse collapse">
+                                                <ul class="nav navbar-nav element-active-slate-400">
+                                                    <li class="active"><a data-toggle="tab" href="#personal" aria-expanded="true"><span class="glyphicon glyphicon-user"></span> Personal</a></li>
+                                                    <li class=""><a data-toggle="tab" href="#contacts" aria-expanded="false"><span class="glyphicon glyphicon-paperclip"></span> Contacts</a></li>
+                                                    <li class=""><a data-toggle="tab" href="#Course" aria-expanded="false"><span class="glyphicon glyphicon-education"></span> Course</a></li>
+                                                    <li class=""><a data-toggle="tab" href="#Fees" aria-expanded="false"><span class="glyphicon glyphicon-usd"></span> Fees</a></li>
+
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="content">
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="tabbable">
+                                                    <form name="StudentDetails" jqx-settings="form" novalidate>
+                                                        <div class="tab-content">
+                                                            <div id="personal" class="tab-pane fade active in">
+                                                                <div class="panel panel-flat">
+                                                                    <div class="panel-heading">
+                                                                        <h6 class="panel-title">Personal Detail</h6>
+
+                                                                    </div>
+                                                                    <div class="panel-body">
+                                                                        <div class="row form-group">
+                                                                            <div class="col-md-4  vertical-center   ">
+                                                                                <label>Registration#</label>
+                                                                                <input type="hidden" value="@ViewBag.InquiryId" id="hdnInquiryId" />
+                                                                                <jqx-input ng-model="RegistrtionNo" jqx-width="'100%'" jqx-height="InputHeight" jqx-theme="Theme" readonly></jqx-input>
+                                                                            </div>
+                                                                            <div class="col-md-4  vertical-center   ">
+                                                                                <label>Joining Date</label>
+                                                                                <jqx-date-time-input ng-model="JoiningDate" jqx-width="'100%'" jqx-height="InputHeight" jqx-theme="Theme"></jqx-date-time-input>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="row form-group">
+                                                                            <div class="col-md-4   vertical-center  ">
+                                                                                <label>First Name</label>
+                                                                                <jqx-input ng-model="FirstName" jqx-width="'100%'" jqx-height="InputHeight" jqx-theme="Theme" maxlength="100" ng-class="{red: InquiryForm.FirstName.$invalid && (InquiryForm.FirstName.$touched || submitted)}" required></jqx-input>
+                                                                            </div>
+                                                                            <div class="col-md-4   vertical-center  ">
+                                                                                <label>Middle Name</label>
+                                                                                <jqx-input ng-model="MiddleName" jqx-width="'100%'" jqx-height="InputHeight" jqx-theme="Theme" maxlength="100" ng-class="{red: InquiryForm.MiddleName.$invalid && (InquiryForm.MiddleName.$touched || submitted)}" required></jqx-input>
+                                                                            </div>
+                                                                            <div class="col-md-4  vertical-center   ">
+                                                                                <label>Last Name</label>
+                                                                                <jqx-input ng-model="LastName" jqx-width="'100%'" jqx-height="InputHeight" jqx-theme="Theme" maxlength="100" ng-class="{red: InquiryForm.LastName.$invalid && (InquiryForm.LastName.$touched || submitted)}" required></jqx-input>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="row form-group">
+                                                                            <div class="col-md-4  vertical-center ">
+                                                                                <label>DOB</label>
+                                                                                @*<jqx-input ng-model="DOB" jqx-width="'100%'" jqx-height="InputHeight" jqx-place-holder="'DOB'" jqx-theme="Theme"></jqx-input>*@
+                                                                                <jqx-date-time-input ng-model="DOB" jqx-width="'100%'" jqx-height="InputHeight" jqx-theme="Theme"></jqx-date-time-input>
+                                                                            </div>
+                                                                            <div class="col-md-4  vertical-center ">
+                                                                                <label>&nbsp;</label>
+                                                                                <jqx-check-box ng-model="IsActive" jqx-width="250" jqx-height="25" jqx-theme="Theme">
+                                                                                    <b> &nbsp; Active?</b>
+                                                                                </jqx-check-box>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row form-group">
+                                                                            <div class="col-md-4   vertical-center  ">
+                                                                                <label>School</label>
+                                                                                <jqx-input ng-model="School" jqx-width="'100%'" jqx-height="InputHeight" jqx-theme="Theme" maxlength="250"></jqx-input>
+                                                                            </div>
+                                                                            <div class="col-md-4    vertical-center ">
+                                                                                <label>College</label>
+                                                                                <jqx-input ng-model="College" jqx-width="'100%'" jqx-height="InputHeight" jqx-theme="Theme" maxlength="250"></jqx-input>
+                                                                            </div>
+
+                                                                        </div>
+                                                                        <div class="row form-group">
+                                                                            <div class="col-md-4   vertical-center  ">
+                                                                                <label>School Address</label>
+                                                                                @*<jqx-input ng-model="DOB" jqx-width="'100%'" jqx-height="InputHeight" jqx-place-holder="'DOB'" jqx-theme="Theme"></jqx-input>*@
+                                                                                <jqx-text-area ng-model="SchoolAddress" jqx-width="'100%'" jqx-height="50" jqx-theme="Theme" maxlength="500"></jqx-text-area>
+                                                                            </div>
+                                                                            <div class="col-md-4  vertical-center   ">
+                                                                                <label>College Address</label>
+                                                                                @*<jqx-input ng-model="DOB" jqx-width="'100%'" jqx-height="InputHeight" jqx-place-holder="'DOB'" jqx-theme="Theme"></jqx-input>*@
+                                                                                <jqx-text-area ng-model="CollegeAddress" jqx-width="'100%'" jqx-height="50" jqx-theme="Theme" maxlength="500"></jqx-text-area>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row form-group">
+                                                                            <div class="col-md-3">
+                                                                                <jqx-button jqx-theme="Theme" jqx-width="100" jqx-height="30" jqx-on-click="SavePersonalDetail(event)">Save</jqx-button>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div id="contacts" class="tab-pane fade ">
+                                                                <div class="panel panel-flat">
+                                                                    <div class="panel-heading">
+                                                                        <h6 class="panel-title">Contact Detail</h6>
+                                                                    </div>
+                                                                    <div class="panel-body">
+                                                                        <div class="row form-group">
+                                                                            <div class="col-md-4  vertical-center  ">
+                                                                                <label>Address</label>
+                                                                                <jqx-text-area ng-model="Address" jqx-width="'100%'" maxlength="500" jqx-height="50" jqx-theme="Theme"></jqx-text-area>
+                                                                            </div>
+
+
+                                                                            <div class="col-md-4  vertical-center  ">
+                                                                                <label>City</label>
+                                                                                <jqx-input ng-model="City" jqx-width="'100%'" jqx-height="InputHeight" jqx-theme="Theme" maxlength="150"></jqx-input>
+                                                                            </div>
+                                                                            <div class="col-md-4   vertical-center ">
+                                                                                <label>Pin Code</label>
+                                                                                <jqx-input ng-model="Pincode" jqx-width="'100%'" jqx-height="InputHeight" jqx-theme="Theme" maxlength="10"></jqx-input>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row form-group">
+                                                                            <div class="col-md-4  vertical-center  ">
+                                                                                <label>Mobile</label>
+                                                                                <jqx-input ng-model="Mobile" jqx-width="'100%'" jqx-height="InputHeight" jqx-theme="Theme" maxlength="20" ng-class="{red: InquiryForm.Mobile.$invalid && (InquiryForm.Mobile.$touched || submitted)}" required></jqx-input>
+                                                                            </div>
+
+                                                                            <div class="col-md-4  vertical-center ">
+                                                                                <label>Email</label>
+                                                                                <jqx-input ng-model="Email" jqx-width="'100%'" jqx-height="InputHeight" ng-pattern="emailFormat" jqx-theme="Theme" maxlength="200" ng-class="{red: InquiryForm.Email.$invalid && (InquiryForm.Email.$touched || submitted)}" required></jqx-input>
+                                                                                <label class="error" ng-show="InquiryForm.Email.$error.pattern">Not valid email!</label>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="panel-heading">
+                                                                        <h6 class="panel-title">Emergency Contact Detail</h6>
+                                                                    </div>
+                                                                    <div class="panel-body">
+                                                                        <div class="row form-group">
+                                                                            <div class="col-md-4   vertical-center  ">
+                                                                                <label>Name</label>
+                                                                                <jqx-input ng-model="ContactPersonName" jqx-width="'100%'" jqx-height="InputHeight" jqx-theme="Theme" maxlength="200"></jqx-input>
+                                                                            </div>
+                                                                            <div class="col-md-4    vertical-center ">
+                                                                                <label>PhoneNo</label>
+                                                                                <jqx-input ng-model="ContactPersonPhone" jqx-width="'100%'" jqx-height="InputHeight" jqx-theme="Theme" maxlength="20"></jqx-input>
+                                                                            </div>
+
+                                                                            <div class="col-md-4   vertical-center ">
+                                                                                <label>Relation</label>
+                                                                                <jqx-input ng-model="ContactPersonRelationship" jqx-width="'100%'" jqx-height="InputHeight" maxlength="50" jqx-theme="Theme"></jqx-input>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row form-group">
+                                                                            <div class="col-md-3">
+                                                                                <jqx-button jqx-theme="Theme" jqx-width="100" jqx-height="30" jqx-on-click="SaveContactDetail(event)">Save</jqx-button>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div id="Course" class="tab-pane fade ">
+                                                                <div class="col-lg-6">
+                                                                    <div class="row">
+                                                                        <div id="DockProgram1" class="col-lg-12" ng-show="ProgramDiv[0]">
+                                                                            <jqx-expander jqx-theme="Theme">
+                                                                                <div>{{Program[0].ProgramName}}</div>
+
+                                                                                <div class=" jqx-widget-content">
+                                                                                    <div class=" form-group">
+                                                                                        <div class="col-md-6   vertical-center ">
+                                                                                            <label>Started From</label>
+                                                                                            <jqx-date-time-input ng-model="Program[0].joinDtProgram" jqx-width="'100%'" jqx-height="InputHeight" jqx-on-change="JoinDateChanged(event)" jqx-theme="Theme"></jqx-date-time-input>
+                                                                                        </div>
+                                                                                        <div class="col-md-6   vertical-center  ">
+                                                                                            <label>Valid till</label>
+                                                                                            <jqx-date-time-input ng-model="Program[0].EnddateProgram" jqx-width="'100%'" jqx-height="InputHeight" jqx-theme="Theme"></jqx-date-time-input>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class=" form-group">
+                                                                                        <div class="col-md-6   vertical-center ">
+                                                                                            <label>Batch</label>
+                                                                                            <jqx-drop-down-list ng-model="Program[0].selectedBatch"
+                                                                                                                jqx-width="170"
+                                                                                                                jqx-height="30"
+                                                                                                                jqx-auto-drop-down-height="true"
+                                                                                                                jqx-display-member="'Title'"
+                                                                                                                jqx-value-member="'Id'"
+                                                                                                                jqx-source="BatchSource" jqx-theme="Theme"></jqx-drop-down-list>
+                                                                                        </div>
+                                                                                        <div class="col-md-6  vertical-center ">
+                                                                                            <label>&nbsp;</label>
+                                                                                            <jqx-check-box ng-model="Program[0].IsActive" jqx-width="150" jqx-height="25" jqx-theme="Theme">
+                                                                                                <b> &nbsp; Active?</b>
+                                                                                            </jqx-check-box>
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                    <div class=" form-group">
+                                                                                        <div class="col-md-12  vertical-center">
+                                                                                            <jqx-button id="0" jqx-theme="Theme" jqx-width="100" jqx-height="30" jqx-on-click="SaveProgram(event)">Save</jqx-button>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </jqx-expander>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-6">
+                                                                    <div class="row">
+                                                                        <div id="DockProgram2" class="col-lg-12" ng-show="ProgramDiv[1]">
+                                                                            <jqx-expander jqx-theme="Theme">
+                                                                                <div>{{Program[1].ProgramName}}</div>
+
+                                                                                <div class=" jqx-widget-content">
+                                                                                    <div class=" form-group">
+                                                                                        <div class="col-md-6   vertical-center ">
+                                                                                            <label>Started From</label>
+                                                                                            <jqx-date-time-input ng-model="Program[1].joinDtProgram" jqx-width="'100%'" jqx-height="InputHeight" jqx-on-change="JoinDateChanged(event)" jqx-theme="Theme"></jqx-date-time-input>
+                                                                                        </div>
+                                                                                        <div class="col-md-6   vertical-center  ">
+                                                                                            <label>Valid till</label>
+                                                                                            <jqx-date-time-input ng-model="Program[1].EnddateProgram" jqx-width="'100%'" jqx-height="InputHeight" jqx-theme="Theme"></jqx-date-time-input>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class=" form-group">
+                                                                                        <div class="col-md-6   vertical-center ">
+                                                                                            <label>Batch</label>
+                                                                                            <jqx-drop-down-list ng-model="Program[1].selectedBatch"
+                                                                                                                jqx-width="170"
+                                                                                                                jqx-height="30"
+                                                                                                                jqx-auto-drop-down-height="true"
+                                                                                                                jqx-display-member="'Title'"
+                                                                                                                jqx-value-member="'Id'"
+                                                                                                                jqx-source="BatchSource" jqx-theme="Theme"></jqx-drop-down-list>
+                                                                                        </div>
+                                                                                        <div class="col-md-6  vertical-center ">
+                                                                                            <label>&nbsp;</label>
+                                                                                            <jqx-check-box ng-model="Program[1].IsActive" jqx-width="150" jqx-height="25" jqx-theme="Theme">
+                                                                                                <b> &nbsp; Active?</b>
+                                                                                            </jqx-check-box>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class=" form-group">
+                                                                                        <div class="col-md-12  vertical-center">
+                                                                                            <jqx-button id="1" jqx-theme="Theme" jqx-width="100" jqx-height="30" jqx-on-click="SaveProgram(event)">Save</jqx-button>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                            </jqx-expander>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div id="Fees" class="tab-pane fade ">
+                                                                <div class="panel panel-flat">
+                                                                    <div class="panel-heading">
+                                                                        <h6 class="panel-title">Fees Detail</h6>
+                                                                    </div>
+                                                                    <div class="panel-body">
+                                                                        <jqx-grid jqx-create="createWidget"
+                                                                                  jqx-columns="[
+                      { text: 'Id', datafield: 'Id', hidden: true },
+                      { text: 'ProgramId', datafield: 'ProgramId', hidden: true },
+                      { text: 'Program', datafield: 'ProgramName', width: '20%' },
+                      { text: 'Fees Paid', datafield: 'FeesPaid', width: '20%' },
+                      { text: 'Duration', datafield: 'Duration', width: '20%' },
+                      { text: 'Valid Till', datafield: 'ValidTill', width: '20%' ,cellsformat: 'dd/MM/yyyy'},
+                      { text: 'Paid On', datafield: 'PaidOn', width: '20%' ,cellsformat: 'dd/MM/yyyy'  }
+                      ]"
+                                                                                  jqx-columnsresize=true
+                                                                                  jqx-sortable=true
+                                                                                  jqx-source="sourceFees"
+                                                                                  jqx-width="'100%'"
+                                                                                  jqx-height="600"
+                                                                                  jqx-rowsheight="60"
+                                                                                  jqx-settings="FeesGrid"
+                                                                                  jqx-theme="Theme"></jqx-grid>
+                                                                        <jqx-window jqx-settings="jqxWindowSettings" jqx-width="450" jqx-height="450" jqx-resizable="false" jqx-theme="Theme" jqx-is-modal="true" jqx-auto-open="false" style="display: none;">
+                                                                            <div>Fees</div>
+                                                                            <div id="winIssuePopup" style="overflow: hidden;">
+                                                                                <div class="row form-group">
+
+                                                                                    <div class="col-md-12  vertical-center">
+                                                                                        <label>Program</label>
+                                                                                        <jqx-drop-down-list ng-model="selectedCourse2"
+                                                                                                            jqx-width="200"
+                                                                                                            jqx-height="30"
+                                                                                                            jqx-auto-drop-down-height="true"
+                                                                                                            jqx-display-member="'name'"
+                                                                                                            jqx-value-member="'id'"
+                                                                                                            jqx-source="courses"
+                                                                                                            jqx-settings="CourseSettings"
+                                                                                                            jqx-theme="Theme"></jqx-drop-down-list>
+                                                                                    </div>
+
+                                                                                </div>
+                                                                                <div class="row ">
+                                                                                    <div class="col-md-12  vertical-center">
+                                                                                        <label>Duration</label>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="row form-group">
+                                                                                    <div class="col-md-3">
+                                                                                        <jqx-radio-button jqx-group-name="durationGrp" jqx-on-change="duration1Change(event,1)" ng-model="duration" value="1" jqx-width="250" jqx-height="25" jqx-theme="Theme">
+                                                                                            1 month
+                                                                                        </jqx-radio-button>
+                                                                                    </div>
+
+                                                                                    <div class="col-md-3">
+                                                                                        <jqx-radio-button jqx-group-name="durationGrp" jqx-on-change="duration3Change(event,3)" ng-model="duration" value="3" jqx-width="250" jqx-height="25" jqx-theme="Theme">
+                                                                                            3 months
+                                                                                        </jqx-radio-button>
+                                                                                    </div>
+                                                                                    <div class="col-md-3">
+                                                                                        <jqx-radio-button jqx-group-name="durationGrp" jqx-on-change="duration6Change(event,6)" ng-model="duration" value="6" jqx-width="250" jqx-height="25" jqx-theme="Theme">
+                                                                                            6 months
+                                                                                        </jqx-radio-button>
+                                                                                    </div>
+                                                                                    <div class="col-md-3">
+                                                                                        <jqx-radio-button jqx-group-name="durationGrp" jqx-on-change="duration12Change(event,12)" ng-model="duration" value="12" jqx-width="250" jqx-height="25" jqx-theme="Theme">
+                                                                                            12 months
+                                                                                        </jqx-radio-button>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="row form-group">
+                                                                                    <div class="col-md-6  vertical-center  ">
+
+                                                                                        <label>Fees</label>
+                                                                                        <jqx-number-input jqx-theme="Theme" jqx-width="'100%'" jqx-height="InputHeight" jqx-spin-buttons="true" ng-model="FeePaid"></jqx-number-input>
+
+                                                                                    </div>
+                                                                                    <div class="col-md-6  vertical-center ">
+                                                                                        <label>Valid Till</label>
+                                                                                        <jqx-date-time-input ng-model="Enddate" jqx-width="'100%'" jqx-height="InputHeight" jqx-theme="Theme"></jqx-date-time-input>
+
+                                                                                    </div>
+
+                                                                                </div>
+                                                                                <div class="row form-group">
+                                                                                    <div class="col-md-3">
+                                                                                        <jqx-button jqx-theme="Theme" jqx-width="100" jqx-height="30" jqx-on-click="onSaveFees(event)">Save</jqx-button>
+                                                                                    </div>
+                                                                                    <div class="col-md-3">
+                                                                                        <jqx-button jqx-theme="Theme" jqx-width="100" jqx-height="30" type="button" jqx-on-click="cancelClick(event)">Clear</jqx-button>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </jqx-window>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="thumbnail">
+                            <div class="thumb thumb-rounded thumb-slide text-center">
+                                <div class="row form-group">
+                                    <div class="col-md-12 ">
+                                        <img id="imgProfilePic" src="~/Uploads/ProfilePics/defaultDP.png" style="width: 120px; height: 100px; vertical-align: bottom;">
+                                    </div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col-md-12 ">
+                                        <input type="file" id="uploadStudentImage" style="display: none;" />
+
+                                        <jqx-button jqx-theme="Theme" jqx-width="120" jqx-height="27" class="cancel" type="button" onclick="$('#uploadStudentImage').click();">Change Photo</jqx-button>
+                                        <input type="hidden" value="@ViewBag.PhotoPath" id="hdnPhotoPath" />
+                                        {{PhotoMessage}}
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="caption text-center">
+                                <h6 class="text-semibold no-margin">
+                                    {{FullName}}
+                                </h6>
+                                <small class="display-block">
+                                  {{ProgramNames}}
+                                </small>
+                            </div>
+                        </div>
+                        <div class="panel panel-flat">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+</div>
+
+@section scripts {
+    <script type="text/javascript" src="~/JS/School/StudentDetailControler.js"></script>
+}
+
+
+

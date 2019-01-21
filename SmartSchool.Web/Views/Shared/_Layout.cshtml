@@ -1,0 +1,83 @@
+﻿<!DOCTYPE html>
+<html ng-app="SmartApp">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Alchemy Music School</title>
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/jqwidgets/css")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jqx")
+
+    <style type="text/css">
+    
+        .red {
+            border: solid 1px red;
+        }
+    </style>
+</head>
+<body>
+    <div ng-controller="BaseController">
+        <div class="navbar">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 text-left" style="padding-bottom: 3px;">
+                        <a href="/School">
+                            <img src="~/Images/logo.jpg" style="height:64px;width:64px;" />
+                        </a>
+                        @*@Html.ActionLink("Alchemy Music School", "Index", "Home", null, new { @class = "navbar-brand" })*@
+                    </div>
+                    <div class="col-md-6 text-right" style="padding-top: 45px;">
+                        @Html.Partial("_LoginPartial")
+                    </div>
+                </div>
+                <div class="row">
+                    @if (User.IsInRole("SchoolAdmin"))
+                    {
+                    <jqx-menu jqx-width="'100%'" jqx-height="'30px'" jqx-theme="Theme">
+                        <ul>
+                            <li>@Html.ActionLink("Dashboard", "Index", "School")</li>
+                            <li>
+                                Admin Menu
+                                <ul style="width: 180px;">
+                                    <li>
+                                        @Html.ActionLink("Add Inquiry", "Inquiry", "School")
+                                    </li>
+                                    <li>
+                                        @Html.ActionLink("Inquiry Maintenance", "InquiryMaintenance", "School")
+                                    </li>
+                                   
+                                    <li>
+                                        @Html.ActionLink("Batch Maintenance", "Batch", "School")
+                                    </li>
+                                    <li>
+                                        @Html.ActionLink("Student List", "Student", "School")
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>@Html.ActionLink("About", "About", "Home")</li>
+                            <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                        </ul>
+                    </jqx-menu>
+                    }
+                    else
+                    {
+                    <jqx-menu jqx-width="'100%'" jqx-height="'30px'" jqx-theme="Theme"></jqx-menu>
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="container body-content">
+            @RenderBody()
+            <hr />
+            <footer>
+                <p>&copy; @DateTime.Now.Year - Smart School System</p>
+            </footer>
+        </div>
+    </div>
+    @Scripts.Render("~/bundles/bootstrap")
+    <script type="text/javascript" src="~/JS/BaseController.js"></script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

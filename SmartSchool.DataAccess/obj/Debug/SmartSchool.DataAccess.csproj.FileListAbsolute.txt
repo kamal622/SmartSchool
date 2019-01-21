@@ -1,0 +1,20 @@
+D:\Users\Vatsal\Projects\INSOL SVN\Projects\SmartSchool\SmartSchool.DataAccess\bin\Debug\SmartSchool.DataAccess.dll.config
+D:\Users\Vatsal\Projects\INSOL SVN\Projects\SmartSchool\SmartSchool.DataAccess\bin\Debug\SmartSchool.DataAccess.dll
+D:\Users\Vatsal\Projects\INSOL SVN\Projects\SmartSchool\SmartSchool.DataAccess\bin\Debug\SmartSchool.DataAccess.pdb
+D:\Users\Vatsal\Projects\INSOL SVN\Projects\SmartSchool\SmartSchool.DataAccess\bin\Debug\EntityFramework.dll
+D:\Users\Vatsal\Projects\INSOL SVN\Projects\SmartSchool\SmartSchool.DataAccess\bin\Debug\EntityFramework.SqlServer.dll
+D:\Users\Vatsal\Projects\INSOL SVN\Projects\SmartSchool\SmartSchool.DataAccess\bin\Debug\EntityFramework.xml
+D:\Users\Vatsal\Projects\INSOL SVN\Projects\SmartSchool\SmartSchool.DataAccess\bin\Debug\EntityFramework.SqlServer.xml
+D:\Users\Vatsal\Projects\INSOL SVN\Projects\SmartSchool\SmartSchool.DataAccess\obj\Debug\SmartSchool.DataAccess.csprojResolveAssemblyReference.cache
+D:\Users\Vatsal\Projects\INSOL SVN\Projects\SmartSchool\SmartSchool.DataAccess\obj\Debug\SmartSchool.DataAccess.dll
+D:\Users\Vatsal\Projects\INSOL SVN\Projects\SmartSchool\SmartSchool.DataAccess\obj\Debug\SmartSchool.DataAccess.pdb
+D:\Users\Kamal\ProSVN\SmartSchool\SmartSchool.DataAccess\bin\Debug\SmartSchool.DataAccess.dll.config
+D:\Users\Kamal\ProSVN\SmartSchool\SmartSchool.DataAccess\bin\Debug\SmartSchool.DataAccess.dll
+D:\Users\Kamal\ProSVN\SmartSchool\SmartSchool.DataAccess\bin\Debug\SmartSchool.DataAccess.pdb
+D:\Users\Kamal\ProSVN\SmartSchool\SmartSchool.DataAccess\bin\Debug\EntityFramework.dll
+D:\Users\Kamal\ProSVN\SmartSchool\SmartSchool.DataAccess\bin\Debug\EntityFramework.SqlServer.dll
+D:\Users\Kamal\ProSVN\SmartSchool\SmartSchool.DataAccess\bin\Debug\EntityFramework.xml
+D:\Users\Kamal\ProSVN\SmartSchool\SmartSchool.DataAccess\bin\Debug\EntityFramework.SqlServer.xml
+D:\Users\Kamal\ProSVN\SmartSchool\SmartSchool.DataAccess\obj\Debug\SmartSchool.DataAccess.csprojResolveAssemblyReference.cache
+D:\Users\Kamal\ProSVN\SmartSchool\SmartSchool.DataAccess\obj\Debug\SmartSchool.DataAccess.dll
+D:\Users\Kamal\ProSVN\SmartSchool\SmartSchool.DataAccess\obj\Debug\SmartSchool.DataAccess.pdb
